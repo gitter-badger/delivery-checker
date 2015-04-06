@@ -11,4 +11,18 @@
 |
 */
 
-Route::get('/',['as'=>'pages.public','uses'=>'AuthController@home'] );
+Route::get('/',function(){
+	return Redirect::route('login');
+});
+
+Route::group(['before' => 'guest'], function(){
+	Route::get('login', ['as'=>'login','uses' => 'AuthController@login']);
+	Route::post('login', array('uses' => 'AuthController@doLogin'));
+});
+
+Route::group(array('before' => 'auth'), function()
+{
+	Route::get('logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
+	Route::get('dashboard', array('as' => 'dashboard', 'uses' => 'AuthController@dashboard'));
+
+});
