@@ -58,6 +58,37 @@ class AuthController extends \BaseController {
 					->with('title','Dashboard');
 	}
 
+	public function changePassword(){
+		return View::make('auth.changePassword')
+					->with('title',"Change Password");
+	}
+
+	public function doChangePassword(){
+		$rules =[
+			'password'              => 'required|confirmed',
+			'password_confirmation' => 'required'
+		];
+		$data = Input::all();
+
+		$validation = Validator::make($data,$rules);
+
+		if($validation->fails()){
+			return Redirect::back()->withErrors($validation)->withInput();
+		}else{
+			$user = Auth::user();
+			$user->password = Hash::make($data['password']);
+
+			if($user->save()){
+				Auth::logout();
+				return Redirect::route('login')
+							->with('success','Your password changed successfully.');
+			}else{
+				return Redirect::route('dashboard')
+							->with('error',"Something went wrong.Please Try again.");
+			}
+		}
+	}
+
 
 
 }

@@ -44,6 +44,10 @@
     </div>
 
 
+
+
+    {{ Form::close() }}
+
     <!-- Modal -->
     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
         <div class="modal-dialog">
@@ -54,19 +58,26 @@
                 </div>
                 <div class="modal-body">
                     <p>Enter your e-mail address below to reset your password.</p>
-                    <input type="text" name="email_1" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+
+
+                    {{ Form::open(array('action' => 'RemindersController@postRemind', 'method' => 'post')) }}
+
+                    {{ Form::email('email', '', array('class' => 'form-control placeholder-no-fix', 'placeholder' => 'Email Address', 'autocomplete'=>'off')) }}
+
+
+
 
                 </div>
                 <div class="modal-footer">
                     <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-                    <button class="btn btn-success" type="button">Submit</button>
+
+                    {{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
+                    {{ Form::close() }}
                 </div>
             </div>
         </div>
     </div>
     <!-- modal -->
-
-    {{ Form::close() }}
 
 </div>
 
