@@ -30,7 +30,7 @@ class CreateCustomersTable extends Migration {
 			$table->string('telephone')->nullable();
 			$table->string('fax')->nullable();
 			$table->string('website')->nullable();
-			$table->string('fee_percentage')->nullable();
+			$table->integer('fee_percentage')->nullable();
 			$table->string('fee_flat')->nullable();
 			$table->integer('sales_id')->nullable();
 			$table->string('sales_percentage')->nullable();

@@ -37,9 +37,17 @@ class CustomerController extends \BaseController {
 	public function store()
 	{
 		$rules = [
-					'company_name'          => 'required',
-					'email'                 =>	'required|email|unique:users',
-					'password'              =>	'required'
+					'name'           => 'required',
+					'address_line_1' => 'required',
+					'email'          => 'required|email|unique:users',
+					'password'       => 'required',
+					'city'           => 'required',
+					'state'          => 'required',
+					'zip'            => 'required',
+					'country'        => 'required',
+					'telephone'      => 'required',
+					'fee_percentage' => 'required|numeric|between:50,100',
+					'fee_flat'       => 'required'
 
 		];
 
@@ -61,6 +69,23 @@ class CustomerController extends \BaseController {
 			$customer->user_id = $user->id;
 			$customer->company_name = $data['company_name'];
 			$customer->name = $data['name'];
+			$customer->title = $data['title'];
+			$customer->attn_name = $data['attn_name'];
+			$customer->address_line_1 = $data['address_line_1'];
+			$customer->address_line_2 = $data['address_line_2'];
+			$customer->city = $data['city'];
+			$customer->state = $data['state'];
+			$customer->zip = $data['zip'];
+			$customer->country = $data['country'];
+			$customer->telephone = $data['telephone'];
+			$customer->fax = $data['fax'];
+			$customer->website = $data['website'];
+			$customer->fee_percentage = $data['fee_percentage'];
+			$customer->fee_flat = $data['fee_flat'];
+			$customer->sales_id = $data['sales_id'];
+			$customer->sales_percentage = $data['sales_percentage'];
+			$customer->affiliate_id = $data['affiliate_id'];
+
 			if($customer->save()){
 				return Redirect::route('customer.index')->with('success',"Customer Created Successfully");
 			}else{
@@ -108,7 +133,15 @@ class CustomerController extends \BaseController {
 	public function update($id)
 	{
 		$rules = [
-					'company_name'          => 'required'
+					'name'           => 'required',
+					'address_line_1' => 'required',
+					'city'           => 'required',
+					'state'          => 'required',
+					'zip'            => 'required',
+					'country'        => 'required',
+					'telephone'      => 'required',
+					'fee_percentage' => 'required|numeric|between:50,100',
+					'fee_flat'       => 'required'
 		];
 
 		$data = Input::all();
@@ -122,6 +155,22 @@ class CustomerController extends \BaseController {
 		$customer = Customer::find($id);
 		$customer->company_name = $data['company_name'];
 		$customer->name = $data['name'];
+		$customer->title = $data['title'];
+		$customer->attn_name = $data['attn_name'];
+		$customer->address_line_1 = $data['address_line_1'];
+		$customer->address_line_2 = $data['address_line_2'];
+		$customer->city = $data['city'];
+		$customer->state = $data['state'];
+		$customer->zip = $data['zip'];
+		$customer->country = $data['country'];
+		$customer->telephone = $data['telephone'];
+		$customer->fax = $data['fax'];
+		$customer->website = $data['website'];
+		$customer->fee_percentage = $data['fee_percentage'];
+		$customer->fee_flat = $data['fee_flat'];
+		$customer->sales_id = $data['sales_id'];
+		$customer->sales_percentage = $data['sales_percentage'];
+		$customer->affiliate_id = $data['affiliate_id'];
 
 		if($customer->save()){
 			return Redirect::route('customer.index')->with('success',"Customer Updated Successfully");

@@ -127,9 +127,10 @@
                     <div class="form-group">
                         {{ Form::label('fee_percentage', 'Fee Percentage', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::text('fee_percentage', '', array('class' => 'form-control', 'placeholder' => 'Fee Percentage')) }}
+                            {{ Form::text('fee_percentage', 50, array('class' => 'form-control', 'placeholder' => 'Fee Percentage')) }}
                         </div>
                     </div>
+
 
                     <div class="form-group">
                         {{ Form::label('fee_flat', 'Fee Flat', array('class' => 'col-md-2 control-label')) }}
