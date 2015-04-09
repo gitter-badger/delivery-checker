@@ -31,3 +31,13 @@ Route::group(array('before' => 'auth'), function()
 
 
 });
+
+Route::group(array('before' => 'auth|Admin'), function()
+{
+	Route::get('customers',['as' => 'customer.index', 'uses' => 'CustomerController@index']);
+	Route::get('customer/create',['as' => 'customer.create', 'uses' => 'CustomerController@create']);
+	Route::post('customer/create',['as' => 'customer.store', 'uses' => 'CustomerController@store']);
+	Route::get('customer/{id}/edit',['as' => 'customer.edit', 'uses' => 'CustomerController@edit']);
+	Route::put('customer/{id}',['as' => 'customer.update', 'uses' => 'CustomerController@update']);
+	Route::delete('customers/{id}',['as' => 'customer.delete', 'uses' => 'CustomerController@destroy']);
+});

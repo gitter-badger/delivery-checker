@@ -8,19 +8,21 @@ class EntrustTableSeeder extends Seeder {
 	public function run()
 	{
 		$admin = Role::find(1);
+		$customer = Role::find(2);
 
 
 		$read = Permission::find(1);
 
 
 		$admin->attachPermission($read);
-
+		$customer->attachPermission($read);
 
 		$user1 = User::find(1);
+		$user2 = User::find(2);
 
 
 		$user1->attachRole($admin);
-
+		$user2->attachRole($customer);
 
 
 

@@ -42,7 +42,7 @@
                   {{-- Customers --}}
                   <li>
 
-                      <a href="#">
+                      <a href="{{route('customer.index')}}">
                           <i class="fa fa-user"></i>
                           <span>Customers</span>
                       </a>
