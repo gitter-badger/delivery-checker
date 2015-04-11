@@ -23,9 +23,11 @@
                     <div class="form-group">
                         {{ Form::label('name', 'Customer Name*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::text('name', null, array('class' => 'form-control', 'placeholder' => 'Customer Name')) }}
+                            {{ Form::text('name', null, array('class' => 'form-control', 'placeholder' => 'Customer Name','disabled')) }}
                         </div>
                     </div>
+
+
 
 
                     <div class="form-group">

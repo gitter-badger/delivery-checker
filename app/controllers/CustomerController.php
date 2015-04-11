@@ -133,7 +133,7 @@ class CustomerController extends \BaseController {
 	public function update($id)
 	{
 		$rules = [
-					'name'           => 'required',
+
 					'address_line_1' => 'required',
 					'city'           => 'required',
 					'state'          => 'required',
@@ -154,7 +154,6 @@ class CustomerController extends \BaseController {
 
 		$customer = Customer::find($id);
 		$customer->company_name = $data['company_name'];
-		$customer->name = $data['name'];
 		$customer->title = $data['title'];
 		$customer->attn_name = $data['attn_name'];
 		$customer->address_line_1 = $data['address_line_1'];
