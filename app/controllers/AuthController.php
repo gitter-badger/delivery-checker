@@ -37,6 +37,14 @@ class AuthController extends \BaseController {
 
 			if (Auth::attempt($credentials))
 			{
+				$userInfo = BrowserDetect::detect();
+				UserInfo::create([
+					'ip' => Request::getClientIp(),
+					'browser' => $userInfo->browserFamily,
+					'os'    =>  $userInfo->osFamily,
+					'device' => $userInfo->deviceModel,
+					'user_id' => Auth::user()->id
+				]);
 				return Redirect::intended('dashboard');
 			} else
 			{
@@ -87,6 +95,15 @@ class AuthController extends \BaseController {
 							->with('error',"Something went wrong.Please Try again.");
 			}
 		}
+	}
+
+	public function userInfo(){
+		$info = UserInfo::with('user')->where('user_id',Auth::user()->id)->orderBy('created_at','desc')->first();
+		$total = UserInfo::with('user')->where('user_id',Auth::user()->id)->orderBy('created_at','desc')->get();
+		return View::make('auth.userInfo')
+					->with('title','User Info')
+					->with('total',$total)
+					->with('info',$info);
 	}
 
 

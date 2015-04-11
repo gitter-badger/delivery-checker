@@ -127,6 +127,7 @@ return array(
 		/* Uncomment for use in development */
 		'Way\Generators\GeneratorsServiceProvider', // Generators
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
+		'hisorange\BrowserDetect\Provider\BrowserDetectService',
 
 	),
 
@@ -196,7 +197,7 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Image'             => 'Intervention\Image\Facades\Image',
 		'Entrust'           => 'Zizaco\Entrust\EntrustFacade',
-
+		'BrowserDetect'     => 'hisorange\BrowserDetect\Facade\Parser',
 	),
 
 );
