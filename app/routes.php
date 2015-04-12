@@ -12,7 +12,7 @@
 */
 
 Route::get('/',function(){
-	return Redirect::route('login');
+	return Redirect::route('dashboard');
 });
 
 Route::group(['before' => 'guest'], function(){
@@ -52,8 +52,8 @@ Route::group(array('before' => 'auth|Admin'), function()
 
 });
 
-Route::get('test',function(){
+/*Route::get('test',function(){
 	$result = BrowserDetect::detect();
 	return $result;
 	//return  Request::getClientIp();
-});
+});*/

@@ -75,6 +75,17 @@
                       </a>
                   </li>
 
+                  @if(Entrust::hasRole(Config::get('customConfig.roles.Admin')))
+
+                  <li>
+
+                      <a href="{{route('user.info')}}">
+                          <i class="fa fa-bell"></i>
+                          <span>User Statistics</span>
+                      </a>
+                  </li>
+                  @endif
+
 
                   
 
