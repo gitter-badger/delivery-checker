@@ -11,7 +11,8 @@ class CustomersTableSeeder extends Seeder {
 
 			Customer::create([
 				'user_id' => User::find(2)->id,
-				'company_name' => "LateRefunds"
+				'company_name' => "LateRefunds",
+				'name' => "Rat"
 			]);
 
 	}

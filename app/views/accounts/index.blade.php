@@ -8,38 +8,39 @@
                 <header class="panel-heading clearfix">
                     {{ $title }}
                     <span class="pull-right">
-
-                            <a class="btn btn-success btn-sm btn-new-user" href="{{ URL::route('customer.create') }}">Add New Customer</a>
-
+                            <a class="btn btn-success btn-sm btn-new-user" href="{{ URL::route('customer.accounts.create',['customer'=>$customer_id]) }}">Add New Account</a>
 					</span>
                 </header>
                 <div class="panel-body">
-                    @if(count($customers))
+                    @if(count($accounts))
                         <table class="display table table-bordered table-striped" id="example">
                             <thead>
                             <tr>
                                 <th>Customer Name</th>
                                 <th>Email</th>
-                                <th>Verified</th>
-                                <th>Enabled</th>
+                                <th>Company Name</th>
+                                <th>Carrier</th>
+                                <th>Username</th>
+                                <th>Password</th>
 
                                 <th class="text-center">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($customers as $customer)
+                            @foreach($accounts as $account)
                                 <tr>
-                                    <td>{{ $customer->name }}</td>
-                                    <td>{{ $customer->user->email }}</td>
-                                    <td>{{ ($customer->verified == 1) ? 'Yes' : 'No' }}</td>
-                                    <td>{{ ($customer->enabled == 1) ? 'Yes' : 'No' }}</td>
+                                    <td>{{ $account->customer->name }}</td>
+                                    <td>{{ $account->customer->user->email }}</td>
+                                    <td>{{ $account->customer->company_name}}</td>
+                                    <td>{{ $account->carrier}}</td>
+                                    <td>{{ $account->username}}</td>
+                                    <td>{{ $account->password}}</td>
 
 
                                     <td class="text-center">
 
-                                        <a class="btn btn-xs btn-primary btn-subscribe" href="{{ URL::route('customer.accounts.index', array('id' => $customer->id)) }}">Accounts</a>
-                                        <a class="btn btn-xs btn-success btn-edit" href="{{ URL::route('customer.edit', array('id' => $customer->id)) }}">Edit</a>
-                                        <a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{{ $customer->id }}">Delete</a>
+                                        <a class="btn btn-xs btn-success btn-edit" href="{{ URL::route('customer.accounts.edit', ['customer' => $account->customer_id,'account'=>$account->id]) }}">Edit</a>
+                                        <a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{{ $account->id }}">Delete</a>
 
                                     </td>
                                 </tr>
@@ -67,7 +68,7 @@
                     Are you sure to delete?
                 </div>
                 <div class="modal-footer">
-                    {{ Form::open(array('route' => array('customer.delete', 0), 'method'=> 'delete', 'class' => 'deleteForm')) }}
+                    {{ Form::open(array('route' => array('customer.accounts.delete', 0), 'method'=> 'delete', 'class' => 'deleteForm')) }}
                     <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
                     {{ Form::submit('Yes, Delete', array('class' => 'btn btn-success')) }}
                     {{ Form::close() }}
@@ -98,7 +99,7 @@
             // delete
             $('.deleteBtn').click(function() {
                 var deleteId = $(this).attr('deleteId');
-                var url = "<?php echo URL::route('customer.index'); ?>";
+                var url = "<?php echo URL::route('customer.accounts.index',['customer'=>$customer_id]); ?>";
                 $(".deleteForm").attr("action", url+'/'+deleteId);
             });
         });

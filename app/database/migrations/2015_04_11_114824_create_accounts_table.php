@@ -24,6 +24,7 @@ class CreateAccountsTable extends Migration {
 						->references('id')->on('customers')
 						->onUpdate('cascade')
 						->onDelete('cascade');
+			$table->unique(array('carrier', 'username'));
 		});
 	}
 
