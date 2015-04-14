@@ -52,8 +52,9 @@ Route::group(array('before' => 'auth|Admin'), function()
 
 });
 
-/*Route::get('test',function(){
-	$result = BrowserDetect::detect();
-	return $result;
+Route::get('test',function(){
+//	$result = BrowserDetect::detect();
+//	return $result;
 	//return  Request::getClientIp();
-});*/
+
+});
