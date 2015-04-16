@@ -23,9 +23,11 @@ class AccountController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($customer)
 	{
-		//
+		return View::make('accounts.create')
+					->with('customer_id',$customer)
+					->with('title','Create Account');
 	}
 
 	/**
@@ -34,9 +36,9 @@ class AccountController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($customer)
 	{
-		//
+		return Input::all();
 	}
 
 	/**
