@@ -128,8 +128,7 @@ return array(
 		/* Uncomment for use in development */
 		'Way\Generators\GeneratorsServiceProvider', // Generators
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
-		'hisorange\BrowserDetect\Provider\BrowserDetectService',
-		'App\Extension\Validation\ValidationServiceProvider'
+		'hisorange\BrowserDetect\Provider\BrowserDetectService'
 
 	),
 
