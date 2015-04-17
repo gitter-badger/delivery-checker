@@ -87,9 +87,12 @@ class AccountController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($customer,$account)
 	{
-		//
+		return View::make('accounts.edit')
+					->with('account',Account::find($account))
+					->with('customer_id',$customer)
+					->with('title','Edit Account');
 	}
 
 	/**
@@ -99,9 +102,28 @@ class AccountController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($customer,$account)
 	{
-		//
+		$rules = [
+					'password' => 'required',
+		];
+
+		$data = Input::all();
+
+		$validator = Validator::make($data,$rules);
+
+		if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
+
+		$account = Account::find($account);
+		$account->password = $data['password'];
+
+		if($account->save()){
+			return Redirect::route('customer.accounts.index',['customer'=> $customer])->with('success',"Customer Account Updated Successfully");
+		}else{
+			return Redirect::route('customer.accounts.index',['customer'=> $customer])->with('error',"Something went wrong.Try again");
+		}
 	}
 
 	/**
