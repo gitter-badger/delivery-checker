@@ -38,6 +38,20 @@ class AccountController extends \BaseController {
 	 */
 	public function store($customer)
 	{
+		$data = Input::all();
+
+		$rules =[
+			'username' => "unique_fields:accounts,".$data['carrier'].",".$data['username']
+		];
+		$messages = array(
+					'unique_fields'=>'carrier and username combination must be unique.'
+		);
+
+		$validator = Validator::make($data,$rules,$messages);
+		if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
+
 		return Input::all();
 	}
 

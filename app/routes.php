@@ -1,4 +1,14 @@
 <?php
+//Validator::extend('unique_fields', 'App\Extension\Validation\CustomValidator@accounts');
+Validator::extend('unique_fields', function($attribute, $value, $parameters){
+	// Get table name from first parameter
+	$table = array_shift($parameters);
+	$query = Account::where('carrier',$parameters[0])
+		->where('username',$parameters[1])
+		->count();
+
+	return ($query == 0);
+});
 
 /*
 |--------------------------------------------------------------------------

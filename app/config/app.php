@@ -129,6 +129,7 @@ return array(
 		'Way\Generators\GeneratorsServiceProvider', // Generators
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
 		'hisorange\BrowserDetect\Provider\BrowserDetectService',
+		'App\Extension\Validation\ValidationServiceProvider'
 
 	),
 
