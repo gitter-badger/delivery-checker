@@ -41,10 +41,12 @@ class AccountController extends \BaseController {
 		$data = Input::all();
 
 		$rules =[
-			'username' => "unique_fields:accounts,".$data['carrier'].",".$data['username']
+			'carrier' => "required",
+			'username' => "required|unique_fields:accounts,".$data['carrier'].",".$data['username'],
+			'password' => 'required'
 		];
 		$messages = array(
-					'unique_fields'=>'carrier and username combination must be unique.'
+					'unique_fields'=>'carrier and username combination already exists.'
 		);
 
 		$validator = Validator::make($data,$rules,$messages);
@@ -52,7 +54,18 @@ class AccountController extends \BaseController {
 			return Redirect::back()->withInput()->withErrors($validator);
 		}
 
-		return Input::all();
+		$account = new Account();
+
+		$account->customer_id = $customer;
+		$account->carrier = $data['carrier'];
+		$account->username = $data['username'];
+		$account->password = $data['password'];
+
+		if($account->save()){
+			return Redirect::route('customer.accounts.index',['customer'=> $customer])->with('success',"Customer Account Created Successfully");
+		}else{
+			return Redirect::route('customer.accounts.index',['customer'=> $customer])->with('error',"Something went wrong.Try again");
+		}
 	}
 
 	/**
