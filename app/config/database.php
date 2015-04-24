@@ -56,8 +56,8 @@ return array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'laterefunds',
-			'username'  => 'root',
-			'password'  => '',
+			'username'  => 'laterefunds',
+			'password'  => 'lr95367ca',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
@@ -122,3 +122,4 @@ return array(
 	),
 
 );
+
