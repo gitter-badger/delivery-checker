@@ -13,7 +13,8 @@ return array(
 	|
 	*/
 
-	'debug' => false,
+
+			'debug' => false,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -127,7 +128,7 @@ return array(
 		/* Uncomment for use in development */
 		'Way\Generators\GeneratorsServiceProvider', // Generators
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
-		'hisorange\BrowserDetect\Provider\BrowserDetectService',
+		'hisorange\BrowserDetect\Provider\BrowserDetectService'
 
 	),
 

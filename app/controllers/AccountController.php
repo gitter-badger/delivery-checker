@@ -23,9 +23,11 @@ class AccountController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($customer)
 	{
-		//
+		return View::make('accounts.create')
+					->with('customer_id',$customer)
+					->with('title','Create Account');
 	}
 
 	/**
@@ -34,9 +36,36 @@ class AccountController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($customer)
 	{
-		//
+		$data = Input::all();
+
+		$rules =[
+			'carrier' => "required",
+			'username' => "required|unique_fields:accounts,".$data['carrier'].",".$data['username'],
+			'password' => 'required'
+		];
+		$messages = array(
+					'unique_fields'=>'carrier and username combination already exists.'
+		);
+
+		$validator = Validator::make($data,$rules,$messages);
+		if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
+
+		$account = new Account();
+
+		$account->customer_id = $customer;
+		$account->carrier = $data['carrier'];
+		$account->username = $data['username'];
+		$account->password = $data['password'];
+
+		if($account->save()){
+			return Redirect::route('customer.accounts.index',['customer'=> $customer])->with('success',"Customer Account Created Successfully");
+		}else{
+			return Redirect::route('customer.accounts.index',['customer'=> $customer])->with('error',"Something went wrong.Try again");
+		}
 	}
 
 	/**
@@ -58,9 +87,12 @@ class AccountController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($customer,$account)
 	{
-		//
+		return View::make('accounts.edit')
+					->with('account',Account::find($account))
+					->with('customer_id',$customer)
+					->with('title','Edit Account');
 	}
 
 	/**
@@ -70,9 +102,28 @@ class AccountController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($customer,$account)
 	{
-		//
+		$rules = [
+					'password' => 'required',
+		];
+
+		$data = Input::all();
+
+		$validator = Validator::make($data,$rules);
+
+		if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
+
+		$account = Account::find($account);
+		$account->password = $data['password'];
+
+		if($account->save()){
+			return Redirect::route('customer.accounts.index',['customer'=> $customer])->with('success',"Customer Account Updated Successfully");
+		}else{
+			return Redirect::route('customer.accounts.index',['customer'=> $customer])->with('error',"Something went wrong.Try again");
+		}
 	}
 
 	/**
