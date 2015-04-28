@@ -8,7 +8,7 @@ class RolesTableSeeder extends Seeder {
 	public function run()
 	{
 		//$faker = Faker::create();
-		$roles = ['Admin','Customer'];
+		$roles = ['Admin','Customer','Super Admin'];
 
 		foreach($roles as $role)
 		{

@@ -42,7 +42,7 @@ Route::group(array('before' => 'auth'), function()
 
 });
 
-Route::group(array('before' => 'auth|Admin'), function()
+Route::group(array('before' => 'auth|AdminOrSuperAdmin'), function()
 {
 	Route::get('userInfo',['as' => 'user.info','uses' => 'AuthController@userInfo']);
 
@@ -66,5 +66,7 @@ Route::get('test',function(){
 //	$result = BrowserDetect::detect();
 //	return $result;
 	//return  Request::getClientIp();
+	//$user = Auth::user();
+	dd(Auth::user()->ability([Config::get('customConfig.roles.superAdmin'),Config::get('customConfig.roles.admin')], [])) ;
 
 });

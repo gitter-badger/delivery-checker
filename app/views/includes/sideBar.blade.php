@@ -12,7 +12,7 @@
                           <span>Dashboard</span>
                       </a>
                   </li>
-                  @if(Entrust::hasRole(Config::get('customConfig.roles.Admin')))
+                  @if(Entrust::hasRole(Config::get('customConfig.roles.admin')|| Config::get('customConfig.roles.superAdmin')))
                   {{-- Task Manager --}}
                   <li>
 
