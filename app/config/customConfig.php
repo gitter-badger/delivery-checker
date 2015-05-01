@@ -5,6 +5,8 @@ return [
 		'siteName' => 'Late Refunds'
 	],
 	'roles' =>[
-		'Admin' => 'Admin'
+		'admin' => 'Admin',
+		'customer' => 'Customer',
+		'superAdmin' => 'Super Admin'
 	]
 ];

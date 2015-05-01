@@ -90,7 +90,21 @@ Route::filter('csrf', function()
 });
 
 Route::filter('Admin',function(){
-	if(! Entrust::hasRole(Config::get('customConfig.roles.Admin'))){
+	if(! Entrust::hasRole(Config::get('customConfig.roles.admin'))){
 		return Redirect::to('/');
+	}
+});
+
+Route::filter('SuperAdmin',function(){
+	if(! Entrust::hasRole(Config::get('customConfig.roles.superAdmin'))){
+		return Redirect::to('/');
+	}
+});
+
+Route::filter('AdminOrSuperAdmin',function(){
+	if(! Entrust::hasRole(Config::get('customConfig.roles.admin'))){
+		if(! Entrust::hasRole(Config::get('customConfig.roles.superAdmin'))){
+			return Redirect::to('/');
+		}
 	}
 });
