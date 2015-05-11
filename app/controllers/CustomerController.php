@@ -47,7 +47,6 @@ class CustomerController extends \BaseController {
 					'country'        => 'required',
 					'telephone'      => 'required',
 					'fee_percentage' => 'required|numeric|between:50,100',
-					'fee_flat'       => 'required'
 
 		];
 
@@ -141,7 +140,6 @@ class CustomerController extends \BaseController {
 					'country'        => 'required',
 					'telephone'      => 'required',
 					'fee_percentage' => 'required|numeric|between:50,100',
-					'fee_flat'       => 'required'
 		];
 
 		$data = Input::all();
