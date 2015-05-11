@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="form-group">
-                        {{ Form::label('address_line_1', 'Address-1', array('class' => 'col-md-2 control-label')) }}
+                        {{ Form::label('address_line_1', 'Address-1*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
                             {{ Form::text('address_line_1', null, array('class' => 'form-control')) }}
                         </div>
@@ -67,35 +67,35 @@
                     </div>
 
                     <div class="form-group">
-                        {{ Form::label('city', 'City', array('class' => 'col-md-2 control-label')) }}
+                        {{ Form::label('city', 'City*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
                             {{ Form::text('city', null, array('class' => 'form-control')) }}
                         </div>
                     </div>
 
                     <div class="form-group">
-                        {{ Form::label('state', 'State', array('class' => 'col-md-2 control-label')) }}
+                        {{ Form::label('state', 'State*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
                             {{ Form::text('state', null, array('class' => 'form-control')) }}
                         </div>
                     </div>
 
                     <div class="form-group">
-                        {{ Form::label('zip', 'Zip', array('class' => 'col-md-2 control-label')) }}
+                        {{ Form::label('zip', 'Zip*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
                             {{ Form::text('zip', null, array('class' => 'form-control')) }}
                         </div>
                     </div>
 
                     <div class="form-group">
-                        {{ Form::label('country', 'Country', array('class' => 'col-md-2 control-label')) }}
+                        {{ Form::label('country', 'Country*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
                             {{ Form::text('country', null, array('class' => 'form-control')) }}
                         </div>
                     </div>
 
                     <div class="form-group">
-                        {{ Form::label('telephone', 'Telephone', array('class' => 'col-md-2 control-label')) }}
+                        {{ Form::label('telephone', 'Telephone*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
                             {{ Form::text('telephone', null, array('class' => 'form-control')) }}
                         </div>
@@ -116,7 +116,7 @@
                     </div>
 
                     <div class="form-group">
-                        {{ Form::label('fee_percentage', 'Fee Percentage', array('class' => 'col-md-2 control-label')) }}
+                        {{ Form::label('fee_percentage', 'Fee Percentage*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
                             {{ Form::text('fee_percentage', null, array('class' => 'form-control')) }}
                         </div>
