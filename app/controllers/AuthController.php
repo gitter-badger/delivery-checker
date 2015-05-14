@@ -20,6 +20,7 @@ class AuthController extends \BaseController {
 		//dd($allInput);
 
 
+
 		if ($validation->fails())
 		{
 
