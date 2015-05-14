@@ -139,7 +139,6 @@ class CustomerController extends \BaseController {
 					'zip'            => 'required',
 					'country'        => 'required',
 					'telephone'      => 'required',
-					'fee_percentage' => 'required|numeric|between:50,100',
 		];
 
 		$data = Input::all();
@@ -153,7 +152,6 @@ class CustomerController extends \BaseController {
 		$customer = Customer::find($id);
 		$customer->company_name = $data['company_name'];
 		$customer->title = $data['title'];
-		$customer->attn_name = $data['attn_name'];
 		$customer->address_line_1 = $data['address_line_1'];
 		$customer->address_line_2 = $data['address_line_2'];
 		$customer->city = $data['city'];
@@ -163,16 +161,66 @@ class CustomerController extends \BaseController {
 		$customer->telephone = $data['telephone'];
 		$customer->fax = $data['fax'];
 		$customer->website = $data['website'];
+
+		if($customer->save()){
+			return Redirect::back()->with('success',"Customer Basic Information Updated Successfully");
+		}else{
+			return Redirect::back()->with('error',"Something went wrong.Try again");
+		}
+	}
+
+
+	public function updateBilling($id)
+	{
+		$rules = [
+
+					'fee_percentage' => 'required|numeric|between:50,100',
+		];
+
+		$data = Input::all();
+
+		$validator = Validator::make($data,$rules);
+
+		if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
+
+		$customer = Customer::find($id);
+		$customer->attn_name = $data['attn_name'];
 		$customer->fee_percentage = $data['fee_percentage'];
 		$customer->fee_flat = $data['fee_flat'];
+
+		if($customer->save()){
+			return Redirect::back()->with('success',"Customer Billing Information Updated Successfully");
+		}else{
+			return Redirect::back()->with('error',"Something went wrong.Try again");
+		}
+	}
+
+	public function updateSales($id)
+	{
+		$rules = [
+
+
+		];
+
+		$data = Input::all();
+
+		$validator = Validator::make($data,$rules);
+
+		if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
+
+		$customer = Customer::find($id);
 		$customer->sales_id = $data['sales_id'];
 		$customer->sales_percentage = $data['sales_percentage'];
 		$customer->affiliate_id = $data['affiliate_id'];
 
 		if($customer->save()){
-			return Redirect::route('customer.index')->with('success',"Customer Updated Successfully");
+			return Redirect::back()->with('success',"Customer Sales Information Updated Successfully");
 		}else{
-			return Redirect::route('customer.index')->with('error',"Something went wrong.Try again");
+			return Redirect::back()->with('error',"Something went wrong.Try again");
 		}
 	}
 

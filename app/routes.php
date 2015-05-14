@@ -50,8 +50,13 @@ Route::group(array('before' => 'auth|AdminOrSuperAdmin'), function()
 	Route::get('customer/create',['as' => 'customer.create', 'uses' => 'CustomerController@create']);
 	Route::post('customer/create',['as' => 'customer.store', 'uses' => 'CustomerController@store']);
 	Route::get('customer/{id}/edit',['as' => 'customer.edit', 'uses' => 'CustomerController@edit']);
-	Route::put('customer/{id}',['as' => 'customer.update', 'uses' => 'CustomerController@update']);
 	Route::delete('customers/{id}',['as' => 'customer.delete', 'uses' => 'CustomerController@destroy']);
+
+	//Customer Update Module
+	Route::put('customer/{id}',['as' => 'customer.update', 'uses' => 'CustomerController@update']);
+	Route::put('customer/billing/{id}',['as' => 'customer.update.billing', 'uses' => 'CustomerController@updateBilling']);
+	Route::put('customer/sales/{id}',['as' => 'customer.update.sales', 'uses' => 'CustomerController@updateSales']);
+
 
 	Route::get('customer/{customer}/accounts',['as' => 'customer.accounts.index', 'uses' => 'AccountController@index']);
 	Route::get('customer/{customer}/accounts/create',['as' => 'customer.accounts.create', 'uses' => 'AccountController@create']);

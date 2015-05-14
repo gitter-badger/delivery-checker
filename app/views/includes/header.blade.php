@@ -30,4 +30,5 @@
           <script src="js/html5shiv.js"></script>
           <script src="js/respond.min.js"></script>
         <![endif]-->
+        {{ HTML::script('js/jquery.js') }}
     </head>

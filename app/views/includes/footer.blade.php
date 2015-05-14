@@ -11,8 +11,9 @@
 
 </section>
 
-  	{{ HTML::script('js/jquery.js') }}
+  	
   	{{ HTML::script('js/bootstrap.min.js') }}
+    {{ HTML::script('https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js') }}
   	{{ HTML::script('js/jquery.dcjqaccordion.2.7.js', array('class' => 'include')) }}
   	{{ HTML::script('js/jquery.scrollTo.min.js') }}
   	{{ HTML::script('js/jquery.nicescroll.js') }}
@@ -20,7 +21,7 @@
     {{ HTML::script('js/slidebars.min.js') }}
   	{{ HTML::script('js/common-scripts.js') }}
   	@yield('script')
-  	{{ HTML::script('js/custom.js') }}
+  	<!-- {{ HTML::script('js/custom.js') }} -->
 
     
 
