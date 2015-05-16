@@ -197,6 +197,47 @@
                     </div>
                 </div>
 
+
+                <div class="tab-pane fade" id="carriers_account">
+                    <div class="panel-body">
+                        <span class="pull-right">
+                            <a class="btn btn-success btn-sm btn-new-user" href="{{ URL::route('customer.accounts.create',['customer'=>$customer->id]) }}">Add New Account</a>
+                        </span>
+                        @if(count($accounts))
+                        <table class="display table table-bordered table-striped" id="example">
+                            <thead>
+                            <tr>
+                                <th>Carrier</th>
+                                <th>Username</th>
+                                <th>Password</th>
+
+                                <th class="text-center">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($accounts as $account)
+                                <tr>
+                                    <td>{{ $account->carrier}}</td>
+                                    <td>{{ $account->username}}</td>
+                                    <td>{{ $account->password}}</td>
+
+
+                                    <td class="text-center">
+
+                                        <a class="btn btn-xs btn-success btn-edit" href="{{ URL::route('customer.accounts.edit', ['customer' => $account->customer_id,'account'=>$account->id]) }}">Edit</a>
+                                        {{--<a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{{ $account->id }}">Delete</a>--}}
+
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    @else
+                        No Data Found
+                    @endif
+                    </div>
+                </div>
+
         </div>
     </div>
 </section>
@@ -205,6 +246,10 @@
 
 <script> 
 $(document).ready(function(){
+
+    $('#example').dataTable({
+               
+    });
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
       var target = $(e.target).attr("href") // activated tab
@@ -227,3 +272,13 @@ $(document).ready(function(){
 
 @stop
 
+@section('style')
+    {{ HTML::style('assets/data-tables/DT_bootstrap.css') }}
+
+@stop
+
+
+@section('script')
+    {{ HTML::script('assets/data-tables/jquery.dataTables.js') }}
+    {{ HTML::script('assets/data-tables/DT_bootstrap.js') }}
+@stop

@@ -62,9 +62,9 @@ class AccountController extends \BaseController {
 		$account->password = $data['password'];
 
 		if($account->save()){
-			return Redirect::route('customer.accounts.index',['customer'=> $customer])->with('success',"Customer Account Created Successfully");
+			return Redirect::route('customer.edit',['id'=> $account->customer_id])->with('success',"Carrier Account Added Successfully");
 		}else{
-			return Redirect::route('customer.accounts.index',['customer'=> $customer])->with('error',"Something went wrong.Try again");
+			return Redirect::route('customer.edit',['id'=> $account->customer_id])->with('error',"Something went wrong.Try again");
 		}
 	}
 
@@ -120,9 +120,9 @@ class AccountController extends \BaseController {
 		$account->password = $data['password'];
 
 		if($account->save()){
-			return Redirect::route('customer.accounts.index',['customer'=> $customer])->with('success',"Customer Account Updated Successfully");
+			return Redirect::route('customer.edit',['id'=> $account->customer_id])->with('success',"Carrier Account Updated Successfully");
 		}else{
-			return Redirect::route('customer.accounts.index',['customer'=> $customer])->with('error',"Something went wrong.Try again");
+			return Redirect::route('customer.edit',['id'=> $account->customer_id])->with('error',"Something went wrong.Try again");
 		}
 	}
 

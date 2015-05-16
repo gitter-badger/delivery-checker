@@ -18,7 +18,7 @@
                     {{ $title }}
                     <span class="pull-right">
 
-                            <a class="btn btn-success btn-sm" href="{{ URL::route('customer.accounts.index',['customer' => $customer_id]) }}"><span class="fa fa-chevron-left"></span> Accounts</a>
+                            <a class="btn btn-success btn-sm" href="{{ URL::route('customer.edit',['id' => $customer_id]) }}"><span class="fa fa-chevron-left"></span> Accounts</a>
 
 					</span>
                 </header>

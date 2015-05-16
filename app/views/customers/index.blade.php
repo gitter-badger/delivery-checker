@@ -37,7 +37,7 @@
 
                                     <td class="text-center">
                                         <a class="btn btn-xs btn-primary btn-subscribe" href="#">Login As</a>
-                                        <a class="btn btn-xs btn-primary btn-subscribe" href="{{ URL::route('customer.accounts.index', array('id' => $customer->id)) }}">Accounts</a>
+                                        <!-- <a class="btn btn-xs btn-primary btn-subscribe" href="{{ URL::route('customer.accounts.index', array('id' => $customer->id)) }}">Accounts</a> -->
                                         <a class="btn btn-xs btn-success btn-edit" href="{{ URL::route('customer.edit', array('id' => $customer->id)) }}">Edit</a>
                                         {{--<a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{{ $customer->id }}">Delete</a>--}}
 
