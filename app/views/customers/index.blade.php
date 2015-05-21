@@ -20,6 +20,7 @@
                             <tr>
                                 <th>Customer ID</th>
                                 <th>Customer Name</th>
+                                <th>Company Name</th>
                                 <th>Email</th>
                                 <th>Verified</th>
                                 <th>Enabled</th>
@@ -32,6 +33,7 @@
                                 <tr>
                                     <td>{{ $customer->id }}</td>
                                     <td>{{ $customer->name }}</td>
+                                    <td>{{ $customer->company_name }}</td>
                                     <td>{{ $customer->user->email }}</td>
                                     <td>{{ ($customer->verified == 1) ? 'Yes' : 'No' }}</td>
                                     <td>{{ ($customer->enabled == 1) ? 'Yes' : 'No' }}</td>
