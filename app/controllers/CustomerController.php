@@ -118,6 +118,7 @@ class CustomerController extends \BaseController {
 	public function edit($id)
 	{
 		$customer = Customer::find($id);
+		$accounts = Account::with('customer')->where('customer_id',$customer->id)->get();
 		return View::make('customers.edit')
 					->with('customer',$customer)
 					->with('accounts',$accounts)
