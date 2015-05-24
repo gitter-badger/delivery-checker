@@ -208,7 +208,7 @@
 
                 <div class="tab-pane fade" id="carriers_account">
                     <div class="panel-body">
-                        <span class="pull-right">
+                        <span class="pull-right" style="padding-bottom:1%">
                             <a class="btn btn-success btn-sm btn-new-user" href="{{ URL::route('customer.accounts.create',['customer'=>$customer->id]) }}">Add New Account</a>
                         </span>
                         @if(count($accounts))
@@ -255,9 +255,9 @@
 <script> 
 $(document).ready(function(){
 
-    $('#example').dataTable({
+    // $('#example').dataTable({
                
-    });
+    // });
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
       var target = $(e.target).attr("href") // activated tab

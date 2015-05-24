@@ -136,6 +136,7 @@ class CustomerController extends \BaseController {
 	{
 		$rules = [
 
+					'name'           => 'required',
 					'address_line_1' => 'required',
 					'city'           => 'required',
 					'state'          => 'required',

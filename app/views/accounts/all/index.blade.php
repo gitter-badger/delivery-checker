@@ -15,13 +15,12 @@
                         <table class="display table table-bordered table-striped" id="example">
                             <thead>
                             <tr>
-                                <th>Customer ID</th>
+                                <th>Account ID</th>
                                 <th>Customer Name</th>
                                 <th>Company Name</th>
                                 <th>Email</th>
                                 <th>Carrier</th>
                                 <th>Username</th>
-                                <th>Password</th>
 
                                 <th class="text-center">Actions</th>
                             </tr>
@@ -29,13 +28,12 @@
                             <tbody>
                             @foreach($accounts as $account)
                                 <tr>
-                                    <td>{{ $account->customer->id }}</td>
+                                    <td>{{ $account->id }}</td>
                                     <td>{{ $account->customer->name }}</td>
                                     <td>{{ $account->customer->company_name}}</td>
                                     <td>{{ $account->customer->user->email }}</td>
                                     <td>{{ $account->carrier}}</td>
                                     <td>{{ $account->username}}</td>
-                                    <td>{{ $account->password}}</td>
 
 
                                     <td class="text-center">
