@@ -58,12 +58,19 @@ Route::group(array('before' => 'auth|AdminOrSuperAdmin'), function()
 	Route::put('customer/sales/{id}',['as' => 'customer.update.sales', 'uses' => 'CustomerController@updateSales']);
 
 
-	Route::get('customer/{customer}/accounts',['as' => 'customer.accounts.index', 'uses' => 'AccountController@index']);
-	Route::get('customer/{customer}/accounts/create',['as' => 'customer.accounts.create', 'uses' => 'AccountController@create']);
-	Route::post('customer/{customer}/accounts/create',['as' => 'customer.accounts.store', 'uses' => 'AccountController@store']);
-	Route::get('customer/{customer}/accounts/{account}/edit',['as' => 'customer.accounts.edit', 'uses' => 'AccountController@edit']);
-	Route::put('customer/{customer}/accounts/{account}',['as' => 'customer.accounts.update', 'uses' => 'AccountController@update']);
-	Route::delete('customer/{customer}/accounts/{account}',['as' => 'customer.accounts.delete', 'uses' => 'AccountController@destroy']);
+	//Customer Based Accounts
+	Route::get('customer/{customer}/accounts',['as' => 'customer.accounts.index', 'uses' => 'CustomerAccountController@index']);
+	Route::get('customer/{customer}/accounts/create',['as' => 'customer.accounts.create', 'uses' => 'CustomerAccountController@create']);
+	Route::post('customer/{customer}/accounts/create',['as' => 'customer.accounts.store', 'uses' => 'CustomerAccountController@store']);
+	Route::get('customer/{customer}/accounts/{account}/edit',['as' => 'customer.accounts.edit', 'uses' => 'CustomerAccountController@edit']);
+	Route::put('customer/{customer}/accounts/{account}',['as' => 'customer.accounts.update', 'uses' => 'CustomerAccountController@update']);
+	Route::delete('customer/{customer}/accounts/{account}',['as' => 'customer.accounts.delete', 'uses' => 'CustomerAccountController@destroy']);
+
+	//Carrer Accounts
+	Route::get('accounts',['as' => 'accounts.index', 'uses' => 'AccountController@index']);
+	Route::get('accounts/{account}/edit',['as' => 'accounts.edit', 'uses' => 'AccountController@edit']);
+	Route::put('accounts/{account}',['as' => 'accounts.update', 'uses' => 'AccountController@update']);
+
 
 });
 

@@ -4,73 +4,43 @@ class AccountController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /account
+	 * GET /allaccount
 	 *
 	 * @return Response
 	 */
-	public function index($customer)
+	public function index()
 	{
-		$accounts = Account::with('customer.user')->where('customer_id',$customer)->get();
-		return View::make('accounts.index')
+		$accounts = Account::all();
+		return View::make('accounts.all.index')
 					->with('accounts',$accounts)
-					->with('customer_id',$customer)
 					->with('title',"Accounts");
 	}
 
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /account/create
+	 * GET /allaccount/create
 	 *
 	 * @return Response
 	 */
-	public function create($customer)
+	public function create()
 	{
-		return View::make('accounts.create')
-					->with('customer_id',$customer)
-					->with('title','Create Account');
+		//
 	}
 
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /account
+	 * POST /allaccount
 	 *
 	 * @return Response
 	 */
-	public function store($customer)
+	public function store()
 	{
-		$data = Input::all();
-
-		$rules =[
-			'carrier' => "required",
-			'username' => "required|unique_fields:accounts,".$data['carrier'].",".$data['username'],
-			'password' => 'required'
-		];
-		$messages = array(
-					'unique_fields'=>'carrier and username combination already exists.'
-		);
-
-		$validator = Validator::make($data,$rules,$messages);
-		if($validator->fails()){
-			return Redirect::back()->withInput()->withErrors($validator);
-		}
-
-		$account = new Account();
-
-		$account->customer_id = $customer;
-		$account->carrier = $data['carrier'];
-		$account->username = $data['username'];
-		$account->password = $data['password'];
-
-		if($account->save()){
-			return Redirect::route('customer.edit',['id'=> $account->customer_id])->with('success',"Carrier Account Added Successfully");
-		}else{
-			return Redirect::route('customer.edit',['id'=> $account->customer_id])->with('error',"Something went wrong.Try again");
-		}
+		//
 	}
 
 	/**
 	 * Display the specified resource.
-	 * GET /account/{id}
+	 * GET /allaccount/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -82,27 +52,26 @@ class AccountController extends \BaseController {
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /account/{id}/edit
+	 * GET /allaccount/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($customer,$account)
+	public function edit($account)
 	{
-		return View::make('accounts.edit')
+		return View::make('accounts.all.edit')
 					->with('account',Account::find($account))
-					->with('customer_id',$customer)
-					->with('title','Edit Account');
+					->with('title','Edit Carrier Account');
 	}
 
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /account/{id}
+	 * PUT /allaccount/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($customer,$account)
+	public function update($account)
 	{
 		$rules = [
 					'password' => 'required',
@@ -120,15 +89,15 @@ class AccountController extends \BaseController {
 		$account->password = $data['password'];
 
 		if($account->save()){
-			return Redirect::route('customer.edit',['id'=> $account->customer_id])->with('success',"Carrier Account Updated Successfully");
+			return Redirect::route('accounts.edit',['account'=> $account->id])->with('success',"Carrier Account Updated Successfully");
 		}else{
-			return Redirect::route('customer.edit',['id'=> $account->customer_id])->with('error',"Something went wrong.Try again");
+			return Redirect::route('accounts.edit',['account'=> $account->id])->with('error',"Something went wrong.Try again");
 		}
 	}
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /account/{id}
+	 * DELETE /allaccount/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response

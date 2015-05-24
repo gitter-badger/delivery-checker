@@ -24,7 +24,7 @@
                   {{-- Carrier Accounts --}}
                   <li>
 
-                      <a href="#">
+                      <a href="{{route('accounts.index')}}">
                           <i class="fa fa-plane"></i>
                           <span>Carrier Accounts</span>
                       </a>
